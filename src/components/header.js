@@ -22,11 +22,13 @@ function Header() {
         <Typography variant="h3" style={{ color: '#1a3fb7', textTransform: 'uppercase', fontWeight: 700 }}>Life Sciences</Typography>
         <Stack direction="row" spacing={2}>
           <Typography variant="h6" style={{ color: '#1a3fb7', fontWeight: 700 }}>About</Typography>
-          <Link to={'/facility'}>
+          <Link to={'/facility'} style={{ textDecoration: 'none' }}>
             <Typography variant="h6" style={{ color: '#1a3fb7', fontWeight: 700 }}>Product</Typography>
           </Link>
           <Typography variant="h6" style={{ color: '#1a3fb7', fontWeight: 700 }}>Presence</Typography>
-          <Typography variant="h6" style={{ color: '#1a3fb7', fontWeight: 700 }}>Contact</Typography>
+          <Link to={'/contact'} style={{ textDecoration: 'none' }}>
+            <Typography variant="h6" style={{ color: '#1a3fb7', fontWeight: 700 }}>Contact</Typography>
+          </Link>
         </Stack>
       </Grid>
     </Grid>

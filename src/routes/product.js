@@ -38,11 +38,13 @@ function Product() {
         <Grid item lg={4} md={4} sm={4} xs={4}>
           <Stack direction="row" spacing={2} justifyContent='flex-end'>
             <Typography variant="h6" style={{ color: '#fff', fontWeight: 700 }}>About</Typography>
-            <Link to={'/facility'}>
+            <Link to={'/facility'} style={{ textDecoration: 'none' }}>
               <Typography variant="h6" style={{ color: '#fff', fontWeight: 700 }}>Product</Typography>
             </Link>
             <Typography variant="h6" style={{ color: '#fff', fontWeight: 700 }}>Presence</Typography>
-            <Typography variant="h6" style={{ color: '#fff', fontWeight: 700, marginRight: '20px' }}>Contact</Typography>
+            <Link to={'/contact'} style={{ textDecoration: 'none' }}>
+              <Typography variant="h6" style={{ color: '#fff', fontWeight: 700, marginRight: '20px' }}>Contact</Typography>
+            </Link>
           </Stack>
         </Grid>
       </Grid>
