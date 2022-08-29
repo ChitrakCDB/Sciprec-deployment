@@ -1,5 +1,7 @@
 import { Button, Grid, IconButton, Stack, TextField, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import { Link } from "react-router-dom";
 import './contactus.css';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -37,6 +39,9 @@ const theme = createTheme({
           '&:hover': {
             background: 'tomato',
           },
+          '&.Mui-disabled': {
+            background: 'gray',
+          },
         },
       },
     },
@@ -50,7 +55,39 @@ const theme = createTheme({
   },
 });
 
+const validationSchema = yup.object({
+  name: yup
+    .string('That doesn\'t look like a name')
+    .required('Without name we can\'t help'),
+  email: yup
+    .string('Enter your email')
+    .email('That doesn\'t look like a email')
+    .required('Without name we can\'t communicate'),
+  phone: yup
+    .number('That doesn\'t look like a phone number')
+    .typeError('That doesn\'t look like a phone number')
+    .positive('A phone number can\'t start with a minus')
+    .integer('A phone number can\'t include a decimal point')
+    .min(8),
+  message: yup
+    .string('How can we help')
+    .required('Please tell us something'),
+});
+
 function ContactUs() {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <div className='ContactBackgroundImage'>
@@ -97,45 +134,72 @@ function ContactUs() {
             <LocationOnIcon sx={{ fontSize: 16 }} /> Address: GIDC Estate, Plot No. 6/D/1, Shop No. 5/6, Opp.- Anand Tiles, Ambavadi, Wadhwan, Surendranagar, Gujarat, 363035
           </Typography>
         </div>
-        <Grid container columnSpacing={7} justifyContent='center'>
-          <Grid item lg={4} mg={4} sm={5} xs={11}>
-            <TextField
-              id="outlined-basic"
-              label="YOUR NAME"
-              variant="outlined"
-              fullWidth
-              color="error"
-              style={{ marginBottom: '25px' }} />
-            <TextField
-              id="outlined-basic"
-              label="YOUR EMAIL"
-              variant="outlined"
-              fullWidth
-              color="error"
-              style={{ marginBottom: '25px' }} />
-            <TextField
-              id="outlined-basic"
-              label="YOUR PHONE"
-              variant="outlined"
-              fullWidth
-              color="error"
-              style={{ marginBottom: '25px' }} />
+        <form onSubmit={formik.handleSubmit}>
+          <Grid container columnSpacing={7} justifyContent='center'>
+            <Grid item lg={4} mg={4} sm={5} xs={11}>
+              <TextField
+                id="name"
+                name="name"
+                label="YOUR NAME*"
+                variant="outlined"
+                fullWidth
+                color="error"
+                style={{ marginBottom: '25px' }}
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name} />
+              <TextField
+                id="email"
+                name="email"
+                label="YOUR EMAIL*"
+                variant="outlined"
+                fullWidth
+                color="error"
+                style={{ marginBottom: '25px' }}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email} />
+              <TextField
+                id="phone"
+                name="phone"
+                label="YOUR PHONE"
+                variant="outlined"
+                fullWidth
+                color="error"
+                style={{ marginBottom: '25px' }}
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+                error={formik.touched.phone && Boolean(formik.errors.phone)}
+                helperText={formik.touched.phone && formik.errors.phone} />
+            </Grid>
+            <Grid item lg={4} mg={4} sm={5} xs={11}>
+              <TextField
+                id="message"
+                name="message"
+                label="YOUR MESSAGE*"
+                variant="outlined"
+                fullWidth
+                color="error"
+                multiline
+                rows={8}
+                style={{ marginBottom: '25px' }}
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                error={formik.touched.message && Boolean(formik.errors.message)}
+                helperText={formik.touched.message && formik.errors.message} />
+            </Grid>
           </Grid>
-          <Grid item lg={4} mg={4} sm={5} xs={11}>
-            <TextField
-              id="outlined-basic"
-              label="YOUR MESSAGE"
-              variant="outlined"
-              fullWidth
-              color="error"
-              multiline
-              rows={8}
-              style={{ marginBottom: '25px' }} />
+          <Grid container justifyContent='center' style={{ marginBottom: '20px' }}>
+            <Button
+              disabled={formik.values.name === '' || formik.values.email === '' || formik.values.message === ''}
+              variant="contained"
+              type='submit'>
+              Send Message
+            </Button>
           </Grid>
-        </Grid>
-        <Grid container justifyContent='center' style={{ marginBottom: '20px' }}>
-          <Button variant="contained">Send Message</Button>
-        </Grid>
+        </form>
         <Stack direction="row" spacing={2} justifyContent='center'>
           <Typography style={{ color: 'white' }}>Follow us: </Typography>
           <IconButton
