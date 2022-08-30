@@ -130,9 +130,24 @@ function ContactUs() {
             <MailOutlineIcon sx={{ fontSize: 16 }} /> Email : <a href="mailto:info.sciprec@gmail.com" style={{ color: 'tomato', textDecoration: 'none' }}>
               info.sciprec@gmail.com</a>
           </Typography>
-          <Typography style={{ color: 'white', marginBottom: '30px' }}>
+          <Typography style={{ color: 'white', marginBottom: '10px' }}>
             <LocationOnIcon sx={{ fontSize: 16 }} /> Address: GIDC Estate, Plot No. 6/D/1, Shop No. 5/6, Opp.- Anand Tiles, Ambavadi, Wadhwan, Surendranagar, Gujarat, 363035
           </Typography>
+          <Stack direction="row" spacing={2} justifyContent='center' style={{ marginBottom: '30px' }}>
+            <Typography style={{ color: 'white' }}>Follow us: </Typography>
+            <IconButton
+              color="error"
+              aria-label="facebook"
+              onClick={() => window.open('https://www.facebook.com/scipreclifesciences/')}>
+              <FacebookIcon sx={{ fontSize: 18 }} />
+            </IconButton>
+            <IconButton
+              color="error"
+              aria-label="instagram"
+              onClick={() => window.open('https://www.instagram.com/scipreclifesciences/')}>
+              <InstagramIcon sx={{ fontSize: 18 }} />
+            </IconButton>
+          </Stack>
         </div>
         <form onSubmit={formik.handleSubmit}>
           <Grid container columnSpacing={7} justifyContent='center'>
@@ -191,7 +206,7 @@ function ContactUs() {
                 helperText={formik.touched.message && formik.errors.message} />
             </Grid>
           </Grid>
-          <Grid container justifyContent='center' style={{ marginBottom: '20px' }}>
+          <Grid container justifyContent='center'>
             <Button
               disabled={formik.values.name === '' || formik.values.email === '' || formik.values.message === ''}
               variant="contained"
@@ -200,21 +215,6 @@ function ContactUs() {
             </Button>
           </Grid>
         </form>
-        <Stack direction="row" spacing={2} justifyContent='center'>
-          <Typography style={{ color: 'white' }}>Follow us: </Typography>
-          <IconButton
-            color="error"
-            aria-label="facebook"
-            onClick={() => window.open('https://www.facebook.com/scipreclifesciences/')}>
-            <FacebookIcon sx={{ fontSize: 18 }} />
-          </IconButton>
-          <IconButton
-            color="error"
-            aria-label="instagram"
-            onClick={() => window.open('https://www.instagram.com/scipreclifesciences/')}>
-            <InstagramIcon sx={{ fontSize: 18 }} />
-          </IconButton>
-        </Stack>
       </div>
     </ThemeProvider>
   );
