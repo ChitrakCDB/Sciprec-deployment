@@ -119,7 +119,7 @@ function ContactUs() {
             color: 'white',
             fontWeight: 'bold',
             textTransform: 'uppercase',
-            margin: '50px 0 20px'
+            margin: '20px 0 20px'
           }}>
             Get in touch
           </Typography>
