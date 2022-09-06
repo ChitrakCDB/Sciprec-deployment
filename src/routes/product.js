@@ -6,9 +6,14 @@ import Products from "../constants/productlist";
 import { Link } from "react-router-dom";
 
 function Product() {
+  const [screenWidth, setScreenWidth] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const [image, setImage] = React.useState('');
   const [text, setText] = React.useState('');
+
+  React.useEffect(() => {
+    setScreenWidth(window.innerWidth)
+  }, [])
 
   const handleClickOpen = (props) => {
     setImage(props.image);
@@ -23,27 +28,27 @@ function Product() {
   return (
     <div style={{ backgroundColor: 'black' }}>
       <Grid container justifyContent='space-between' alignItems='center'>
-        <Grid item lg={4} md={4} sm={4} xs={4}>
+        <Grid item lg={4} md={4} sm={12} xs={12}>
           <Link to={'/'}>
             <img src='SCIPREC_LOGO_WHITE-removebg-preview.png' alt='logo'
               style={{
-                height: 150,
+                height: screenWidth > 900 ? 150 : 75,
               }}
             />
           </Link>
         </Grid>
-        <Grid item lg={3} md={3} sm={3} xs={3}>
+        <Grid item lg={3} md={3} sm={12} xs={12}>
           <Typography variant="h3" style={{ textAlign: 'center', fontFamily: 'Nunito', fontSize: '35px', color: 'white', fontWeight: 'bold', padding: '30px 0' }}>EYE DROPS</Typography>
         </Grid>
-        <Grid item lg={4} md={4} sm={4} xs={4}>
-          <Stack direction="row" spacing={2} justifyContent='flex-end'>
-            <Typography variant="h6" style={{ color: '#fff', fontWeight: 700 }}>About</Typography>
+        <Grid item lg={4} md={4} sm={12} xs={12}>
+          <Stack direction="row" spacing={screenWidth > 900 ? 2 : 1} justifyContent={screenWidth > 900 ? 'flex-end' : 'space-around'}>
+            <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700, marginLeft: '20px' }}>About</Typography>
             <Link to={'/facility'} style={{ textDecoration: 'none' }}>
-              <Typography variant="h6" style={{ color: '#fff', fontWeight: 700 }}>Product</Typography>
+              <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>Product</Typography>
             </Link>
-            <Typography variant="h6" style={{ color: '#fff', fontWeight: 700 }}>Presence</Typography>
+            <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>Presence</Typography>
             <Link to={'/contact'} style={{ textDecoration: 'none' }}>
-              <Typography variant="h6" style={{ color: '#fff', fontWeight: 700, marginRight: '20px' }}>Contact</Typography>
+              <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700, marginRight: '20px' }}>Contact</Typography>
             </Link>
           </Stack>
         </Grid>

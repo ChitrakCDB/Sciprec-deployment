@@ -44,7 +44,7 @@ function BlueBox(props) {
     >
       {topImageList.map(({ key, offset, image, size }) => (
         <BlueImageContainer key={key} screenHeight={screenHeight} blueHeight={blueHeight} offset={offset}>
-          <img src={image} alt='research-lab' style={{ height: size }} />
+          {screenWidth > 900 ? <img src={image} alt='research-lab' style={{ height: size }} /> : null}
         </BlueImageContainer>
       ))}
       <Footer />
