@@ -44,7 +44,7 @@ function PinkBox(props) {
     >
       {topImageList.map(({ key, offset, image, size }) => (
         <PinkImageContainer key={key} screenHeight={screenHeight} pinkHeight={pinkHeight} offset={offset}>
-          <img src={image} alt='life-sciences' style={{ height: size }} />
+          {screenWidth > 900 ? <img src={image} alt='life-sciences' style={{ height: size }} /> : null}
         </PinkImageContainer>
       ))}
       <Header />
