@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Button, Grid, IconButton, Stack, TextField, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from 'formik';
@@ -75,6 +76,12 @@ const validationSchema = yup.object({
 });
 
 function ContactUs() {
+  const [screenWidth, setScreenWidth] = React.useState(0);
+
+  React.useEffect(() => {
+    setScreenWidth(window.innerWidth)
+  }, [])
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -96,45 +103,51 @@ function ContactUs() {
             <Link to={'/'}>
               <img src='SCIPREC_LOGO_WHITE-removebg-preview.png' alt='logo'
                 style={{
-                  height: 150,
+                  height: screenWidth > 900 ? 150 : 75,
                 }}
               />
             </Link>
           </Grid>
           <Grid item lg={4} md={4} sm={4} xs={4}>
-            <Stack direction="row" spacing={2} justifyContent='flex-end'>
-              <Typography variant="h6" style={{ color: '#fff', fontWeight: 700 }}>About</Typography>
+            <Stack direction="row" spacing={screenWidth > 900 ? 2 : 1} justifyContent='flex-end'>
+              <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>About</Typography>
               <Link to={'/facility'} style={{ textDecoration: 'none' }}>
-                <Typography variant="h6" style={{ color: '#fff', fontWeight: 700 }}>Product</Typography>
+                <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>Product</Typography>
               </Link>
-              <Typography variant="h6" style={{ color: '#fff', fontWeight: 700 }}>Presence</Typography>
+              <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>Presence</Typography>
               <Link to={'/contact'} style={{ textDecoration: 'none' }}>
-                <Typography variant="h6" style={{ color: '#fff', fontWeight: 700, marginRight: '20px' }}>Contact</Typography>
+                <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700, marginRight: '20px' }}>Contact</Typography>
               </Link>
             </Stack>
           </Grid>
         </Grid>
         <div style={{ textAlign: 'center' }}>
-          <Typography variant='h3' style={{
+          <Typography variant={screenWidth > 900 ? "h3" : "h4"} style={{
             color: 'white',
             fontWeight: 'bold',
             textTransform: 'uppercase',
-            margin: '20px 0 20px'
+            margin: `${screenWidth > 900 ? '20px 0 20px' : '0 0 5px'}`,
           }}>
             Get in touch
           </Typography>
-          <Typography style={{ color: 'white', marginBottom: '10px' }}>
+          <Typography variant={screenWidth > 900 ? "p" : "caption"} style={{ color: 'white' }}>
             <PhoneIcon sx={{ fontSize: 16 }} /> Phone : 91-2752-241548
           </Typography>
-          <Typography style={{ color: 'white', marginBottom: '10px' }}>
+          <br />
+          {screenWidth > 900 ? <br /> : null}
+          <Typography variant={screenWidth > 900 ? "p" : "caption"} style={{ color: 'white' }}>
             <MailOutlineIcon sx={{ fontSize: 16 }} /> Email : <a href="mailto:info.sciprec@gmail.com" style={{ color: 'tomato', textDecoration: 'none' }}>
               info.sciprec@gmail.com</a>
           </Typography>
-          <Typography style={{ color: 'white', marginBottom: '10px' }}>
+          <br />
+          {screenWidth > 900 ? <br /> : null}
+          <Typography variant={screenWidth > 900 ? "p" : "caption"} style={{ color: 'white' }}>
             <LocationOnIcon sx={{ fontSize: 16 }} /> Address: GIDC Estate, Plot No. 6/D/1, Shop No. 5/6, Opp.- Anand Tiles, Ambavadi, Wadhwan, Surendranagar, Gujarat, 363035
           </Typography>
-          <Stack direction="row" spacing={2} justifyContent='center' style={{ marginBottom: '30px' }}>
-            <Typography style={{ color: 'white' }}>Follow us: </Typography>
+          <br />
+          {screenWidth > 900 ? <br /> : null}
+          <Stack direction="row" spacing={screenWidth > 900 ? 2 : 1} justifyContent='center' style={{ margin: `${screenWidth > 900 ? '0 0 30px' : '0 0 20px'}` }}>
+            <Typography variant={screenWidth > 900 ? "p" : "caption"} style={{ color: 'white' }}>Follow us: </Typography>
             <IconButton
               color="error"
               aria-label="facebook"
@@ -159,7 +172,7 @@ function ContactUs() {
                 variant="outlined"
                 fullWidth
                 color="error"
-                style={{ marginBottom: '25px' }}
+                style={{ marginBottom: `${screenWidth > 900 ? '25px' : '10px'}` }}
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 error={formik.touched.name && Boolean(formik.errors.name)}
@@ -171,7 +184,7 @@ function ContactUs() {
                 variant="outlined"
                 fullWidth
                 color="error"
-                style={{ marginBottom: '25px' }}
+                style={{ marginBottom: `${screenWidth > 900 ? '25px' : '10px'}` }}
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 error={formik.touched.email && Boolean(formik.errors.email)}
@@ -183,7 +196,7 @@ function ContactUs() {
                 variant="outlined"
                 fullWidth
                 color="error"
-                style={{ marginBottom: '25px' }}
+                style={{ marginBottom: `${screenWidth > 900 ? '25px' : '10px'}` }}
                 value={formik.values.phone}
                 onChange={formik.handleChange}
                 error={formik.touched.phone && Boolean(formik.errors.phone)}
@@ -198,7 +211,7 @@ function ContactUs() {
                 fullWidth
                 color="error"
                 multiline
-                rows={8}
+                rows={screenWidth > 900 ? 8 : 3}
                 style={{ marginBottom: '25px' }}
                 value={formik.values.message}
                 onChange={formik.handleChange}
@@ -210,13 +223,14 @@ function ContactUs() {
             <Button
               disabled={formik.values.name === '' || formik.values.email === '' || formik.values.message === ''}
               variant="contained"
-              type='submit'>
+              type='submit'
+              style={{ fontSize: `${screenWidth > 900 ? '14px' : '12px'}` }}>
               Send Message
             </Button>
           </Grid>
         </form>
       </div>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
 
