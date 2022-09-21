@@ -29,11 +29,15 @@ function Header() {
       <Grid item style={{ textAlign: 'right' }}>
         <Typography variant={screenWidth > 900 ? "h3" : "subtitle1"} style={{ color: '#1a3fb7', textTransform: 'uppercase', fontWeight: 700 }}>Life Sciences</Typography>
         <Stack direction="row" spacing={screenWidth > 900 ? 2 : 1}>
-          <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#1a3fb7', fontWeight: 700 }}>About</Typography>
+          <Link to={'/'} style={{ textDecoration: 'none' }}>
+            <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#1a3fb7', fontWeight: 700 }}>About</Typography>
+          </Link>
           <Link to={'/facility'} style={{ textDecoration: 'none' }}>
             <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#1a3fb7', fontWeight: 700 }}>Product</Typography>
           </Link>
-          <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#1a3fb7', fontWeight: 700 }}>Presence</Typography>
+          <Link to={'/'} style={{ textDecoration: 'none' }}>
+            <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#1a3fb7', fontWeight: 700 }}>Presence</Typography>
+          </Link>
           <Link to={'/contact'} style={{ textDecoration: 'none' }}>
             <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#1a3fb7', fontWeight: 700 }}>Contact</Typography>
           </Link>

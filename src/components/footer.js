@@ -20,8 +20,12 @@ function Footer() {
       }}>
       <Grid item>
         <Stack direction="row" spacing={screenWidth > 900 ? 2 : 1}>
-          <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#f64b96', fontWeight: 700 }}>About</Typography>
-          <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#f64b96', fontWeight: 700 }}>Facility</Typography>
+          <Link to={'/'} style={{ textDecoration: 'none' }}>
+            <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#f64b96', fontWeight: 700 }}>About</Typography>
+          </Link>
+          <Link to={'/'} style={{ textDecoration: 'none' }}>
+            <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#f64b96', fontWeight: 700 }}>Facility</Typography>
+          </Link>
           <Link to={'/contact'} style={{ textDecoration: 'none' }}>
             <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#f64b96', fontWeight: 700 }}>Contact</Typography>
           </Link>
