@@ -42,7 +42,7 @@ function PinkBox(props) {
       }}
       onMouseOver={onPinkHover}
     >
-      {topImageList.map(({ key, offset, image, size }) => (
+      {topImageList && topImageList.map(({ key, offset, image, size }) => (
         <PinkImageContainer key={key} screenHeight={screenHeight} pinkHeight={pinkHeight} offset={offset}>
           {screenWidth > 900 ? <img src={image} alt='life-sciences' style={{ height: size }} /> : null}
         </PinkImageContainer>

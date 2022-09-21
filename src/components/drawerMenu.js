@@ -10,7 +10,7 @@ function DrawerMenu(props) {
       onClose={props.handleClose}
     >
       <List>
-        {props.list.map((item, index) => (
+        {props.list && props.list.map((item, index) => (
           <ListItem key={index}>
             <ListItemButton onClick={props.handleClose}>
               <Link to={item.link} style={{ textDecoration: 'none' }}>

@@ -150,7 +150,7 @@ function ContactUs() {
           {screenWidth > 900 ?
             <Grid item lg={4} md={4}>
               <Stack direction="row" style={{ margin: '0 20px' }} spacing={screenWidth > 900 ? 2 : 1} justifyContent='flex-end'>
-                {headerLinks.map((item, index) => (
+                {headerLinks && headerLinks.map((item, index) => (
                   <Link key={index} to={item.link} style={{ textDecoration: 'none' }}>
                     <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>{item.text}</Typography>
                   </Link>

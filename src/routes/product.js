@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dialog, DialogContent, DialogTitle, Grid, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
+import { CircularProgress, Dialog, DialogContent, DialogTitle, Grid, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -51,14 +51,18 @@ function Product() {
   const [screenWidth, setScreenWidth] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const [menuClick, setMenuClick] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const [productsList, setProductList] = React.useState([]);
   const [image, setImage] = React.useState('');
   const [text, setText] = React.useState('');
   const [description, setDescription] = React.useState([]);
   const [currentCategory, setCurrentCategory] = React.useState(0);
 
   React.useEffect(() => {
-    setScreenWidth(window.innerWidth)
-  }, [])
+    if (screenWidth === 0) setScreenWidth(window.innerWidth);
+    setProductList(Products[categories[currentCategory]]);
+    setLoading(false);
+  }, [currentCategory, screenWidth])
 
   const handleClickOpen = (props) => {
     setImage(props.image);
@@ -71,8 +75,10 @@ function Product() {
     setOpen(false);
   };
 
-  const handleCategoryChange = (event, newValue) => {
-    setCurrentCategory(newValue);
+  const handleCategoryChange = (event, value) => {
+    setLoading(true);
+    setCurrentCategory(value);
+    setProductList([]);
   };
 
   const handleMenuClick = () => {
@@ -115,7 +121,7 @@ function Product() {
           {screenWidth > 900 ?
             <Grid item lg={4} md={4} sm={12} xs={12}>
               <Stack direction="row" style={{ margin: '0 20px' }} spacing={screenWidth > 900 ? 2 : 1} justifyContent={screenWidth > 900 ? 'flex-end' : 'space-around'}>
-                {headerLinks.map((item, index) => (
+                {headerLinks && headerLinks.map((item, index) => (
                   <Link key={index} to={item.link} style={{ textDecoration: 'none' }}>
                     <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>{item.text}</Typography>
                   </Link>
@@ -131,20 +137,37 @@ function Product() {
             variant="scrollable"
             scrollButtons
             allowScrollButtonsMobile
-            aria-label="scrollable force tabs example"
           >
-            {categories.map((item, index) => (
+            {categories && categories.map((item, index) => (
               <Tab key={index} label={item} />
             ))}
           </Tabs>
         </Grid>
-        {/* <Grid container>
-        {Products.map((item, index) =>
-          <Grid key={index} item lg={4} md={6} sm={6} xs={12} onClick={() => handleClickOpen(item)}>
-            <ProductCard {...item} />
-          </Grid>
-        )}
-      </Grid> */}
+        {loading ? <CircularProgress /> :
+          <>
+            {currentCategory === 0 ?
+              <Grid container>
+                {categories.map((item) => (
+                  <React.Fragment key={item}>
+                    {item !== 'All' && Products[item].map((item, index) => (
+                      <Grid key={item + index} item lg={4} md={6} sm={6} xs={12} onClick={() => handleClickOpen(item)}>
+                        <ProductCard {...item} />
+                      </Grid>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </Grid>
+              :
+              <Grid container>
+                {productsList && productsList.map((item, index) =>
+                  <Grid key={index} item lg={4} md={6} sm={6} xs={12} onClick={() => handleClickOpen(item)}>
+                    <ProductCard {...item} />
+                  </Grid>
+                )}
+              </Grid>
+            }
+          </>
+        }
         <Dialog
           maxWidth={'md'}
           open={open}
@@ -172,7 +195,7 @@ function Product() {
               <>
                 <Typography>Other information:</Typography>
                 <ul>
-                  {description.map((content, index) => (
+                  {description && description.map((content, index) => (
                     <li key={index}>{content}</li>
                   ))}
                 </ul>
