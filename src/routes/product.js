@@ -2,8 +2,10 @@ import * as React from "react";
 import { Dialog, DialogContent, DialogTitle, Grid, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
 import ProductCard from '../components/productCard';
 import Products, { categories } from "../constants/productlist";
+import DrawerMenu from "../components/drawerMenu";
 import { Link } from "react-router-dom";
 
 const theme = createTheme({
@@ -30,9 +32,25 @@ const theme = createTheme({
   }
 })
 
+const headerLinks = [
+  {
+    text: 'About',
+    link: '/'
+  },
+  {
+    text: 'Presence',
+    link: '/'
+  },
+  {
+    text: 'Contact',
+    link: '/contact'
+  }
+]
+
 function Product() {
   const [screenWidth, setScreenWidth] = React.useState(0);
   const [open, setOpen] = React.useState(false);
+  const [menuClick, setMenuClick] = React.useState(false);
   const [image, setImage] = React.useState('');
   const [text, setText] = React.useState('');
   const [description, setDescription] = React.useState([]);
@@ -57,11 +75,19 @@ function Product() {
     setCurrentCategory(newValue);
   };
 
+  const handleMenuClick = () => {
+    setMenuClick(true);
+  };
+
+  const handleMenuClose = () => {
+    setMenuClick(false);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div style={{ backgroundColor: 'black' }}>
         <Grid container justifyContent='space-between' alignItems='center'>
-          <Grid item lg={4} md={4} sm={12} xs={12}>
+          <Grid item lg={4} md={4} sm={10} xs={10}>
             <Link to={'/'}>
               <img src='SCIPREC_LOGO_WHITE-removebg-preview.png' alt='logo'
                 style={{
@@ -70,21 +96,33 @@ function Product() {
               />
             </Link>
           </Grid>
+          {screenWidth > 900 ? null :
+            <Grid item sm={2} xs={2} textAlign='center'>
+              <IconButton
+                aria-label="menu"
+                id="menu-button"
+                style={{ color: 'white' }}
+                onClick={handleMenuClick}
+              >
+                <MenuIcon />
+              </IconButton>
+              <DrawerMenu open={menuClick} list={headerLinks} screenWidth={screenWidth} handleClose={handleMenuClose} />
+            </Grid>
+          }
           <Grid item lg={3} md={3} sm={12} xs={12}>
             <Typography variant="h3" style={{ textAlign: 'center', fontFamily: 'Nunito', fontSize: '35px', color: 'white', fontWeight: 'bold', padding: '30px 0' }}>EYE DROPS</Typography>
           </Grid>
-          <Grid item lg={4} md={4} sm={12} xs={12}>
-            <Stack direction="row" spacing={screenWidth > 900 ? 2 : 1} justifyContent={screenWidth > 900 ? 'flex-end' : 'space-around'}>
-              <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700, marginLeft: '20px' }}>About</Typography>
-              <Link to={'/facility'} style={{ textDecoration: 'none' }}>
-                <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>Product</Typography>
-              </Link>
-              <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>Presence</Typography>
-              <Link to={'/contact'} style={{ textDecoration: 'none' }}>
-                <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700, marginRight: '20px' }}>Contact</Typography>
-              </Link>
-            </Stack>
-          </Grid>
+          {screenWidth > 900 ?
+            <Grid item lg={4} md={4} sm={12} xs={12}>
+              <Stack direction="row" style={{ margin: '0 20px' }} spacing={screenWidth > 900 ? 2 : 1} justifyContent={screenWidth > 900 ? 'flex-end' : 'space-around'}>
+                {headerLinks.map((item, index) => (
+                  <Link key={index} to={item.link} style={{ textDecoration: 'none' }}>
+                    <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>{item.text}</Typography>
+                  </Link>
+                ))}
+              </Stack>
+            </Grid> : null
+          }
         </Grid>
         <Grid container>
           <Tabs

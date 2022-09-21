@@ -5,11 +5,13 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Link } from "react-router-dom";
 import './contactus.css';
+import DrawerMenu from "../components/drawerMenu";
 import PhoneIcon from '@mui/icons-material/Phone';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const theme = createTheme({
   components: {
@@ -75,8 +77,24 @@ const validationSchema = yup.object({
     .required('Please tell us something'),
 });
 
+const headerLinks = [
+  {
+    text: 'About',
+    link: '/'
+  },
+  {
+    text: 'Product',
+    link: '/product'
+  },
+  {
+    text: 'Presence',
+    link: '/'
+  }
+]
+
 function ContactUs() {
   const [screenWidth, setScreenWidth] = React.useState(0);
+  const [menuClick, setMenuClick] = React.useState(false);
 
   React.useEffect(() => {
     setScreenWidth(window.innerWidth)
@@ -95,6 +113,14 @@ function ContactUs() {
     },
   });
 
+  const handleMenuClick = () => {
+    setMenuClick(true);
+  };
+
+  const handleMenuClose = () => {
+    setMenuClick(false);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className='ContactBackgroundImage'>
@@ -108,18 +134,30 @@ function ContactUs() {
               />
             </Link>
           </Grid>
-          <Grid item lg={4} md={4} sm={4} xs={4}>
-            <Stack direction="row" spacing={screenWidth > 900 ? 2 : 1} justifyContent='flex-end'>
-              <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>About</Typography>
-              <Link to={'/facility'} style={{ textDecoration: 'none' }}>
-                <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>Product</Typography>
-              </Link>
-              <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>Presence</Typography>
-              <Link to={'/contact'} style={{ textDecoration: 'none' }}>
-                <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700, marginRight: '20px' }}>Contact</Typography>
-              </Link>
-            </Stack>
-          </Grid>
+          {screenWidth > 900 ? null :
+            <Grid item sm={2} xs={2} textAlign='center'>
+              <IconButton
+                aria-label="menu"
+                id="menu-button"
+                style={{ color: 'white' }}
+                onClick={handleMenuClick}
+              >
+                <MenuIcon />
+              </IconButton>
+              <DrawerMenu open={menuClick} list={headerLinks} screenWidth={screenWidth} handleClose={handleMenuClose} />
+            </Grid>
+          }
+          {screenWidth > 900 ?
+            <Grid item lg={4} md={4}>
+              <Stack direction="row" style={{ margin: '0 20px' }} spacing={screenWidth > 900 ? 2 : 1} justifyContent='flex-end'>
+                {headerLinks.map((item, index) => (
+                  <Link key={index} to={item.link} style={{ textDecoration: 'none' }}>
+                    <Typography variant={screenWidth > 900 ? "h6" : "caption"} style={{ color: '#fff', fontWeight: 700 }}>{item.text}</Typography>
+                  </Link>
+                ))}
+              </Stack>
+            </Grid> : null
+          }
         </Grid>
         <div style={{ textAlign: 'center' }}>
           <Typography variant={screenWidth > 900 ? "h3" : "h4"} style={{
