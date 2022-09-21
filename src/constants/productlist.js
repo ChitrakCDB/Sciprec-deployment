@@ -1,7 +1,8 @@
 export const categories = [
   'All',
-  'ANTI FUNGAL',
+  'ANTI BIOTIC',
   'ANTI BIOTIC WITH COMBINATION',
+  'ANTI FUNGAL',
   'STEROID',
   'MISC. PREPARATIONS',
   'OINTMENTS',
@@ -12,211 +13,142 @@ export const categories = [
 ];
 
 const Products = {
-  "ANTI FUNGAL": [
+  "ANTI BIOTIC": [
     {
-      image: 'AQUASOOTHE PLUS.jpg',
-      text: 'AQUASOOTHE PLUS',
-      category: 2,
-      description: []
+      image: 'SCIMOX.jpg',
+      text: 'SCIMOX EYE DROPS 5ml',
+      description: ['Moxifloxacin 0.5%']
     },
     {
-      image: 'BEPOPREC.jpg',
-      text: 'BEPOPREC',
-      category: 2,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'SCIGAT.jpg',
+      text: 'SCIGAT EYE DROPS 5ml',
+      description: ['Gatifloxacin 0.3% ']
     },
   ],
 
   "ANTI BIOTIC WITH COMBINATION": [
     {
-      image: 'FLUOROPREC.jpg',
-      text: 'FLUOROPREC',
-      category: 2,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'SCIMOX-LP.jpg',
+      text: 'SCIMOX-LP EYE DROPS 5ml',
+      description: ['Moxifloxacin 0.5%', 'Loteprednol 0.5%']
+    },
+    {
+      image: 'SCIMOX-DX.jpg',
+      text: 'SCIMOX-DX EYE DROPS 5ml',
+      description: ['Moxifloxacin 0.5%', 'Dexamethasone Phos. 0.5%']
+    },
+    {
+      image: 'TOBAPREC-LP.jpg',
+      text: 'TOBRAPREC-LP EYE DROPS 5ml',
+      description: ['Tobramycin', 'Loteprednol Opthalmic Suspension']
     },
     {
       image: 'FLUOROPREC-T.jpg',
-      text: 'FLUOROPREC-T',
-      category: 5,
-      description: ['Moxifloxacin 0.5%', 'Other chemical', 'Test']
+      text: 'FLUOROPREC-T EYE DROPS 5ml',
+      description: ['Fluorometholone 0.1%', 'Tobramycin 0.3%']
     },
     {
-      image: 'MOXIPREC-KT.jpg',
-      text: 'MOXIPREC-KT',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'SCIMOX-BR.jpg',
+      text: 'SCIMOX-BR EYE DROPS 5ml',
+      description: ['Moxifloxacin 0.5%', 'Bromfenac Sodium 0.09%']
     },
     {
-      image: 'PARAPREC-1.jpg',
-      text: 'PARAPREC',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    },
-    {
-      image: 'SCIBROM.jpg',
-      text: 'SCIBROM',
-      category: 0,
-      description: ['Moxifloxacin 0.5%']
+      image: 'SCIMOX-TB.jpg',
+      text: 'SCIMOX-TB EYE DROPS 5ml',
+      description: ['Moxifloxacin 0.5%', 'Tobramycin 0.3%']
     }
+  ],
+
+  
+  "ANTI FUNGAL": [
+    {
+      image: 'SCINATA.jpg',
+      text: 'SCINATA EYE DROPS 5ml',
+      description: ['Natamycin Opthalmic Suspension 5%']
+    },
+    
   ],
 
   "STEROID": [
     {
-      image: 'SCICLOP.jpg',
-      text: 'SCICLOP',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'FLUOROPREC.jpg',
+      text: 'FLUOROPREC EYE DROPS 5ml',
+      description: ['Fluorometholone 0.1% ']
     }
   ],
 
   "MISC. PREPARATIONS": [
     {
-      image: 'SCIDORZ-T.jpg',
-      text: 'SCIDORZ-T',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'PARAPREC-1.jpg',
+      text: 'PARAPREC EYE DROPS 5ml',
+      description: ['Proparacain Hydrochloride']
     },
     {
-      image: 'SCIFRESH GEL.jpg',
-      text: 'SCIFRESH GEL',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'TROPISCI-P.jpg',
+      text: 'TROPISCI-P EYE DROPS 5ml',
+      description: ['Tropicamide', 'phenylephrine HCL']
     },
-    {
-      image: 'SCIFRESH.jpg',
-      text: 'SCIFRESH',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    }
-  ],
+    ],
 
   "OINTMENTS": [
     {
       image: 'SCIGAT.jpg',
-      text: 'SCIGAT',
-      category: 0,
+      text: 'DUMMY',
       description: ['Moxifloxacin 0.5%', 'Other chemical']
     },
-    {
-      image: 'SCI-HY.jpg',
-      text: 'SCI-HY',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    },
-    {
-      image: 'SCILUBE.jpg',
-      text: 'SCILUBE',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    },
-    {
-      image: 'SCIMOX.jpg',
-      text: 'SCIMOX',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    },
-    {
-      image: 'SCIMOX-BR.jpg',
-      text: 'SCIMOX-BR',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    },
-    {
-      image: 'SCIMOX-DX.jpg',
-      text: 'SCIMOX-DX',
-      category: 1,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    }
+    
   ],
 
   "TEAR SUBSTITUTE": [
     {
-      image: 'SCINATA.jpg',
-      text: 'SCINATA',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'SCIFRESH.jpg',
+      text: 'SCIFRESH EYE DROPS 10ml',
+      description: ['Sodium Carboxymethyl 0.5% ']
     },
     {
-      image: 'SCINEP.jpg',
-      text: 'SCINEP',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'AQUASOOTHE PLUS.jpg',
+      text: 'AQUASOOTHE PLUS EYE DROPS 10ml',
+      description: ['Sodium Carboxymethyl 0.5%','Glycerin 1%']
     },
     {
-      image: 'SCIPRED.jpg',
-      text: 'SCIPRED',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'SCIFRESH GEL.jpg',
+      text: 'SCIFRESH-GEL EYE DROPS 10ml',
+      description: ['Sodium Carboxymethyl Cellulose 1%']
     },
     {
-      image: 'TOBAPREC-LP.jpg',
-      text: 'TOBAPREC-LP',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'SCI-HY.jpg',
+      text: 'SCI-HY EYE DROPS 10ml',
+      description: ['Sodium Hyluronate 0.1%']
     },
     {
-      image: 'TROPISCI-P.jpg',
-      text: 'TROPISCI-P',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'SCILUBE.jpg',
+      text: 'SCILUBE EYE DROPS 10ml',
+      description: ['Polyethylene Glycol 400', 'Propylene Glycol 300']
     }
   ],
 
   "ANTI GLAUCOMA": [
     {
-      image: 'SCIMOX-LP.jpg',
-      text: 'SCIMOX-LP',
-      category: 1,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'SCIDORZ-T.jpg',
+      text: 'SCIDORZ-T EYE DROPS 5ml',
+      description: ['Dorzolamide','Timolol Eye Drops']
     },
-    {
-      image: 'SCIMOX-TB.jpg',
-      text: 'SCIMOX-TB',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    }
   ],
 
   "ANTIOXIDANT TABLETS, CAPSULES & SYRUP": [
     {
       image: 'SCIMOX-LP.jpg',
-      text: 'SCIMOX-LP',
-      category: 1,
+      text: 'DUMMY',
       description: ['Moxifloxacin 0.5%', 'Other chemical']
     },
-    {
-      image: 'SCIMOX-TB.jpg',
-      text: 'SCIMOX-TB',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    }
   ],
 
   "ANTI INFLAMMATORY & ANTI ALLERGIC": [
     {
-      image: 'SCIMOX-LP.jpg',
-      text: 'SCIMOX-LP',
-      category: 1,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
+      image: 'SCIBROM.jpg',
+      text: 'SCIBROM EYE DROPS 5ml',
+      description: ['Bromfenac Ophthalmics Solution 0.09%']
     },
-    {
-      image: 'SCIMOX-TB.jpg',
-      text: 'SCIMOX-TB',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    },
-    {
-      image: 'SCIMOX-LP.jpg',
-      text: 'SCIMOX-LP',
-      category: 1,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    },
-    {
-      image: 'SCIMOX-TB.jpg',
-      text: 'SCIMOX-TB',
-      category: 0,
-      description: ['Moxifloxacin 0.5%', 'Other chemical']
-    }
   ]
 }
 
