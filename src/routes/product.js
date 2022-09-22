@@ -49,6 +49,7 @@ const headerLinks = [
 
 function Product() {
   const [screenWidth, setScreenWidth] = React.useState(0);
+  const [screenHeight, setScreenHeight] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const [menuClick, setMenuClick] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -60,9 +61,10 @@ function Product() {
 
   React.useEffect(() => {
     if (screenWidth === 0) setScreenWidth(window.innerWidth);
+    if (screenHeight === 0) setScreenHeight(window.innerHeight);
     setProductList(Products[categories[currentCategory]]);
     setLoading(false);
-  }, [currentCategory, screenWidth])
+  }, [currentCategory, screenHeight, screenWidth])
 
   const handleClickOpen = (props) => {
     setImage(props.image);
@@ -91,7 +93,7 @@ function Product() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ backgroundColor: 'black' }}>
+      <div style={{ backgroundColor: 'black', minHeight: screenHeight }}>
         <Grid container justifyContent='space-between' alignItems='center'>
           <Grid item lg={4} md={4} sm={10} xs={10}>
             <Link to={'/'}>
